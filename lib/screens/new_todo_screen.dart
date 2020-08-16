@@ -46,7 +46,7 @@ class _NewTodoScreenState extends State<NewTodoScreen> {
       body: ListView(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(right: 32, left: 32, top: 6),
+            padding: const EdgeInsets.only(right: 32, left: 32, top: 30),
             child: Text(
               widget.currentTodo == null ? "Create New Todo" : "Edit your todo",
               style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
@@ -54,7 +54,7 @@ class _NewTodoScreenState extends State<NewTodoScreen> {
           ),
           Padding(
             padding:
-                const EdgeInsets.only(top: 10, right: 32, left: 32, bottom: 32),
+                const EdgeInsets.only(top: 32, right: 32, left: 32, bottom: 32),
             child: TextField(
               controller: _nameController,
               decoration: InputDecoration(
@@ -147,40 +147,6 @@ class _NewTodoScreenState extends State<NewTodoScreen> {
                           fontWeight: FontWeight.w300,
                           color: Colors.grey[900]),
                     ),
-                  ],
-                ),
-              )),
-          Padding(
-              padding: const EdgeInsets.only(left: 32, right: 32, top: 32),
-              child: Container(
-                padding: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.blueGrey[100]),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
-                  children: <Widget>[
-                    Container(
-                        decoration: BoxDecoration(
-                            color: Color.fromRGBO(235, 255, 255, 1),
-                            borderRadius: BorderRadius.circular(15)),
-                        padding: EdgeInsets.all(16),
-                        child: Icon(
-                          Icons.label_important,
-                          color: Colors.blueAccent[400],
-                        )),
-                    SizedBox(
-                      width: 24,
-                    ),
-                    Text(
-                      "Label",
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w300,
-                          color: Colors.grey[900]),
-                    ),
-                    SizedBox(width: 125),
-                    Icon(Icons.arrow_forward_ios)
                   ],
                 ),
               )),
