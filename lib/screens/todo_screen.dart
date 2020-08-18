@@ -37,9 +37,7 @@ class _TodoScreenState extends State<TodoScreen> {
             style: TextStyle(
                 color: Colors.white, fontSize: 40, fontWeight: FontWeight.bold),
           ),
-          actions: <Widget>[
-            appBarActions(context)
-          ],
+          actions: <Widget>[appBarActions(context)],
         ),
         backgroundColor: Colors.deepPurple,
         body: Stack(
@@ -61,7 +59,6 @@ class _TodoScreenState extends State<TodoScreen> {
         ));
   }
 
-
   void refreshList() {
     db.then((_) {
       Future<List<TodoModel>> lastTodos = _todoHelper.getAllTodos();
@@ -70,8 +67,6 @@ class _TodoScreenState extends State<TodoScreen> {
       });
     });
   }
-
-
 
   //Draggable screen
   todoDraggable() {
@@ -96,14 +91,15 @@ class _TodoScreenState extends State<TodoScreen> {
                         future: _todoHelper.getAllTodos(),
                         builder: (BuildContext context,
                             AsyncSnapshot<List<TodoModel>> snapshot) {
-                          if(snapshot.hasData){
-                            return loadTodos(todos,scrolController);
-                          }else  return Text(
-                            "No Todos\n\nclick + to add new",
-                            style: TextStyle(
-                                fontSize: 20, color: Colors.grey[700]),
-                            textAlign: TextAlign.center,
-                          );
+                          if (snapshot.hasData) {
+                            return loadTodos(todos, scrolController);
+                          } else
+                            return Text(
+                              "No Todos\n\nclick + to add new",
+                              style: TextStyle(
+                                  fontSize: 20, color: Colors.grey[700]),
+                              textAlign: TextAlign.center,
+                            );
                         })),
               ),
               Positioned(
@@ -125,8 +121,9 @@ class _TodoScreenState extends State<TodoScreen> {
           );
         });
   }
+
   //If snapshot has a data
-  loadTodos(List<TodoModel> todos,ScrollController scrolController) {
+  loadTodos(List<TodoModel> todos, ScrollController scrolController) {
     return ListView.builder(
         controller: scrolController,
         itemCount: todos.length,
@@ -153,28 +150,23 @@ class _TodoScreenState extends State<TodoScreen> {
             ),
             key: UniqueKey(),
             onDismissed: (direction) {
-              if (direction ==
-                  DismissDirection.endToStart) {
+              if (direction == DismissDirection.endToStart) {
                 setState(() {
                   _todoHelper.deleteTodo(item.id);
                   todos.removeAt(i);
                 });
               }
-              if (direction ==
-                  DismissDirection.startToEnd) {
-                Navigator.of(context).push(
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            NewTodoScreen(
-                              currentTodo: item,
-                            )));
+              if (direction == DismissDirection.startToEnd) {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => NewTodoScreen(
+                          currentTodo: item,
+                        )));
               }
             },
             child: ListTile(
               title: Text(item.name,
                   style: TextStyle(
-                      color: Colors.grey[900],
-                      fontWeight: FontWeight.bold)),
+                      color: Colors.grey[900], fontWeight: FontWeight.bold)),
               subtitle: Text(
                 item.details,
                 style: TextStyle(color: Colors.grey[700]),
@@ -190,9 +182,7 @@ class _TodoScreenState extends State<TodoScreen> {
                   ),
                   Icon(
                     Icons.check_circle,
-                    color: item.done == 1
-                        ? Colors.greenAccent
-                        : null,
+                    color: item.done == 1 ? Colors.greenAccent : null,
                   ),
                 ],
               ),
@@ -211,6 +201,7 @@ class _TodoScreenState extends State<TodoScreen> {
           );
         });
   }
+
   Widget appBarActions(context) {
     refreshList();
     return PopupMenuButton(
@@ -254,4 +245,3 @@ class _TodoScreenState extends State<TodoScreen> {
     );
   }
 }
-

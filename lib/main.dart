@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:todolistapp/screens/todo_screen.dart';
 
 
-void main()async{
- await Future.delayed(Duration(milliseconds: 3000),(){});
+void main(){
+  Future.delayed(Duration(milliseconds: 3000),(){});
   runApp(
     MaterialApp(
       title: "List TODO app",
